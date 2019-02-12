@@ -1,4 +1,4 @@
-package com.wuxp.study.basic.mathematics.recursive;
+package com.wuxp.study.mathematics.recursive;
 
 
 import com.wuxp.study.helper.SolvingTheDivisorHelper;

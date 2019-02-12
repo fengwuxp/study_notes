@@ -1,4 +1,4 @@
-package com.wuxp.study.basic.mathematics.recursive;
+package com.wuxp.study.mathematics.recursive;
 
 
 import lombok.extern.slf4j.Slf4j;

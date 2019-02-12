@@ -10,7 +10,9 @@
     <version>0.0.1</version>
 
     <modules>
-        <module>algorithm_data_structure</module>
+        <module>algorithm-data-structure</module>
+        <module>basic-mathematics</module>
+        <module>common</module>
     </modules>
 
 
