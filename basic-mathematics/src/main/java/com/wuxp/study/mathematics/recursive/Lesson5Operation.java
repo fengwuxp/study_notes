@@ -6,6 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 /**
  * 递归
@@ -39,7 +41,7 @@ public class Lesson5Operation {
 
     public static void main(String[] args) {
         Lesson5Operation lesson5Operation = new Lesson5Operation();
-        lesson5Operation.solve(100);
+//        lesson5Operation.solve(100);
         lesson5Operation.solve(255);
     }
 
@@ -75,11 +77,15 @@ public class Lesson5Operation {
                     this.count++;
                     List<Integer> integers = new ArrayList<>(results);
                     integers.add(1);
-                    log.debug("{}的第{}个因式分解：{}", handleNum, this.count, integers);
+                    log.debug("{}的第{}个因式分解：{}", handleNum, this.count, integers.stream()
+                            .sorted()
+                            .collect(Collectors.toList()));
                 }
                 if (results.size() > 1) {
                     this.count++;
-                    log.debug("{}的第{}个因式分解：{}", handleNum, this.count, results);
+                    log.debug("{}的第{}个因式分解：{}", handleNum, this.count, results.stream()
+                            .sorted()
+                            .collect(Collectors.toList()));
                 }
                 return;
             } else if (num < 1) {
@@ -88,9 +94,11 @@ public class Lesson5Operation {
 
             for (int i = 1; i < this.factorNumList.length; i++) {
                 int factorNum = this.factorNumList[i];
-                List<Integer> integers = new ArrayList<>(results);
-                integers.add(factorNum);
-                this.handle(num / factorNum, integers);
+                if (num % factorNum == 0) {
+                    List<Integer> integers = new ArrayList<>(results);
+                    integers.add(factorNum);
+                    this.handle(num / factorNum, integers);
+                }
             }
         }
 
