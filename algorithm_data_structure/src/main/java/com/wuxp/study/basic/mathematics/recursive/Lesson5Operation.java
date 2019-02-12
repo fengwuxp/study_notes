@@ -39,8 +39,8 @@ public class Lesson5Operation {
 
     public static void main(String[] args) {
         Lesson5Operation lesson5Operation = new Lesson5Operation();
-        lesson5Operation.solve(8);
-//        lesson5Operation.solve(255);
+        lesson5Operation.solve(100);
+        lesson5Operation.solve(255);
     }
 
 

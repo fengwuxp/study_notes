@@ -25,40 +25,25 @@ public final class SolvingTheDivisorHelper {
             throw new RuntimeException("not support zero");
         }
 
-        if (num == 1) {
-            return new Integer[]{1};
-        }
-
         Set<Integer> integers = new HashSet<>();
 
-        double sqrt = Math.sqrt(num);
-        if (num % sqrt == 0) {
-            integers.add((int) sqrt);
-        }
-
-
-        //这里可能会发生隐式类型装换，四舍五入
-        int half = num / 2;
-        if (num % half == 0) {
-            integers.add(half);
-            integers.addAll(Arrays.asList(solve(half)));
-        } else {
-            for (int i = 2; i < half; i++) {
-                if (num % i == 0) {
-                    integers.add(i);
+        for (int i = 1; i * i <= num; ++i) {
+            if (num % i == 0) {
+                //得到左侧的约数列表
+                integers.add(i);
+                if (i * i != num) {
+                    //求出右侧的约数列表
+                    integers.add(num / i);
                 }
             }
         }
-
-        integers.add(num);
-
         return integers.stream()
                 .sorted()
                 .toArray(Integer[]::new);
     }
 
     public static void main(String[] args) {
-        int num = 100;
+        int num = 99;
         Integer[] integers = SolvingTheDivisorHelper.solve(num);
         log.debug("{}的因数列表为：{}", num, integers);
     }
